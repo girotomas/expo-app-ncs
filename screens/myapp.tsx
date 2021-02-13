@@ -18,7 +18,7 @@ export class MyApp extends React.Component<{  }, { response: string }> {
                 console.warn(request)
             }
         };
-        const  link= 'https://g0ym652bgj.execute-api.us-east-1.amazonaws.com/prod/'
+        const  link= 'https://1nwnrgfyvd.execute-api.us-east-1.amazonaws.com/prod/'
         request.open('POST', link);
         request.send(this.state.text);
     }
