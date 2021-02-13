@@ -8,10 +8,11 @@ import {MyApp} from './myapp';
 export default function TabOneScreen() {
   return (
     <View style={styles.container}>
-      <MyApp/>
-      <Text style={styles.title}>Tab One</Text>
-      <View style={styles.separator} lightColor="#eee" darkColor="rgba(255,255,255,0.1)" />
-      <EditScreenInfo path="/screens/TabOneScreen.tsx" />
+      <View style={{width:'100%', flexGrow:10, flex:1}}><MyApp/></View>
+      <View style={{flex:1}}>
+          <Text style={styles.title}>Tab One</Text>
+          <View style={styles.separator} lightColor="#eee" darkColor="rgba(255,255,255,0.1)" />
+      </View>
     </View>
   );
 }
