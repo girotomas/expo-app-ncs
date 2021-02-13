@@ -1,32 +1,24 @@
-let url = "https://ncs.io/music-search?q="
-let https = require('https')
+import * as cdk from '@aws-cdk/core';
+const apigw = require('@aws-cdk/aws-apigateway');
+import * as lambda from '@aws-cdk/aws-lambda';
 
-exports.handler = async function(event) {
-  try{
-    const search = url + event.body
-    const promise = new Promise(function(resolve, reject) {
-       https.get(search, function (resp)  {
-          let data = ''; 
-          resp.on('data', function(chunk){
-            data += chunk;
-          });
-          resp.on('end', function(){
-            let response = {
-              statusCode: '200',
-              body: JSON.stringify(data)
-            };
-            resolve(response);
-          })
-          resp.on('error', function (e){
-            console.log(e)
-            resolve(e)
-          })
-       })
-    })
-    return promise
-  }
-  catch(e){
-    console.log(e)
-    return JSON.stringify(e) 
+export class DeletemeStack extends cdk.Stack {
+  constructor(scope: cdk.Construct, id: string, props?: cdk.StackProps) {
+    super(scope, id, props);
+
+    const fn = new lambda.Function(this, 'helloWorldFunction', {
+      code: new AssetCode('lambda-handler'),
+      handler: 'index.handler',
+      runtime: Runtime.NODEJS_12_X
+    });
+
+    const helloWorldLambdaRestApi = new apigw.LambdaRestApi(this, 'helloWorldLambdaRestApi', {
+      restApiName: 'Hello World API',
+      handler: fn,
+      defaultCorsPreflightOptions: {
+          allowOrigins: apigw.Cors.ALL_ORIGINS
+      }
+    });
   }
 }
+
