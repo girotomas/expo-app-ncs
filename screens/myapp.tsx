@@ -61,6 +61,7 @@ export class MyApp extends React.Component<{  }, { response: string }> {
         var mp3link = 'https://ncsmusic.s3.eu-west-1.amazonaws.com/tracks/000/000/853/phenomenon-1605895230-EleosL4jlP.mp3'
         mp3link = 'https://example.com'
         return <View style={{width:'98%', display:'flex', flexDirection:'column', height:'100%', alignItems:'stretch'}}>
+            <View style={{height:30}}></View>
             <View  style={{ flex:1, ...shadow }}>
                 <TextInput
                     placeholder=" Search your song..."
